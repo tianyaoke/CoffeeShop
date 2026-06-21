@@ -320,21 +320,44 @@ h1, h2, h3, h4, h5 {
     font-weight: bold;
 }
 
+/* =========================
+   MENU CARDS
+   ========================= */
+
 .menu-card {
     border: none;
     background-color: var(--light-cream);
     box-shadow: 0 4px 10px var(--shadow-light);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border-radius: 15px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.menu-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.menu-card .card-body {
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .menu-card h5 {
     color: var(--dark-brown);
     font-weight: bold;
+    margin-bottom: 12px;
 }
 
 .menu-card p {
     color: var(--text-dark);
+    margin-bottom: 15px;
 }
 
 .menu-card span {
@@ -342,7 +365,6 @@ h1, h2, h3, h4, h5 {
     color: var(--coffee-brown);
     font-size: 18px;
 }
-
 
 /* =========================
    FOOTER
