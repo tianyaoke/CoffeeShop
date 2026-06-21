@@ -291,22 +291,34 @@ h1, h2, h3, h4, h5 {
    MENU PAGE HEADER
    ========================= */
 
+/* =========================
+   MENU PAGE HEADER
+   ========================= */
+
 .menu-header {
-    background-color: var(--caramel);
-    padding: 110px 20px 80px;
-    color: var(--text-dark);
+    background-image: url("images/menu-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 70px;
+}
+
+.menu-header-overlay {
+    background-color: var(--overlay-dark);
+    padding: 120px 20px 90px;
 }
 
 .menu-header h1 {
-    font-size: 42px;
+    color: var(--white);
+    font-size: 52px;
     font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .menu-header p {
-    font-size: 18px;
+    color: var(--white);
+    font-size: 20px;
 }
-
-
 /* =========================
    MENU SECTION
    ========================= */
