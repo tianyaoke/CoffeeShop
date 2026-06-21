@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Brew Coffee Shop</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4e7d3;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h1 {
+            text-align: center;
+            color: #6f4e37;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .item {
+            margin: 15px 0;
+        }
+
+        input {
+            width: 70px;
+            padding: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6f4e37;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        .total {
+            text-align: center;
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>☕ Daily Brew Coffee Shop</h1>
+
+    <h2>Place Your Order</h2>
+
+    <form method="POST">
+
+        <div class="item">
+            Espresso (Ksh 200):
+            <input type="number" name="espresso" value="0" min="0">
+        </div>
+
+        <div class="item">
+            Cappuccino (Ksh 300):
+            <input type="number" name="cappuccino" value="0" min="0">
+        </div>
+
+        <div class="item">
+            Latte (Ksh 350):
+            <input type="number" name="latte" value="0" min="0">
+        </div>
+
+        <button type="submit">Calculate Total</button>
+
+    </form>
+
+    <div class="total">
+        <h3>Total Cost: Ksh {{ total }}</h3>
+    </div>
+
+</div>
+
+</body>
+</html>
