@@ -34,5 +34,6 @@
             "password": "208802",
             "connectionTimeout": 300
         }
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
