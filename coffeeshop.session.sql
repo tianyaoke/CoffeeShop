@@ -16,7 +16,11 @@ CREATE TABLE IF NOT EXISTS coffee_items(
 );
 CREATE TABLE IF NOT EXISTS orders(
     order_id SERIAL PRIMARY KEY,
+<<<<<<< HEAD
     user_id INT REFERENCES users(id) ON DELETE SET NULL,
+=======
+    id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
+>>>>>>> ca76e916b20a73d30984fb41ed1a2075eeb6df6e
     status VARCHAR(20) NOT NULL DEFAULT 'pending' CHECK (status IN('pending', 'confirmed', 'ready', 'completed', 'cancelled')),
     total_amount NUMERIC(10,2) NOT NULL CHECK (total_amount >=0),
     notes TEXT,
