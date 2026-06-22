@@ -47,9 +47,11 @@ h1, h2, h3, h4, h5 {
 }
 
 .navbar-brand {
-    font-size: 26px;
+    font-size: 27px;
     font-weight: bold;
     color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
 }
 
 .navbar-brand:hover {
