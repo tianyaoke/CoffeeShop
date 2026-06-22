@@ -30,3 +30,8 @@ CREATE TABLE IF NOT EXISTS order_items(
     unit_price NUMERIC(8,2) NOT NULL,
     quantity INT NOT NULL CHECK (quantity > 0)
 );
+INSERT INTO coffee_items (name, description, price, category, image_url, is_available)
+VALUES
+  ('Cappuccino', 'Rich espresso topped with smooth steamed milk foam.', 250.00, 'coffee', 'images/cappuccino.jpg', TRUE),
+  ('Iced Latte', 'Cool, creamy, and refreshing coffee served over ice.', 280.00, 'coffee', 'images/iced-latte.jpg', TRUE),
+  ('Butter Croissant', 'Freshly baked, soft inside, and golden outside.', 220.00, 'pastry', 'images/croissant.jpg', TRUE);
