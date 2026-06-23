@@ -1,92 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Daily Brew Coffee Shop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - The Daily Brew</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="style.css">
+
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4e7d3;
-            padding: 2rem;
-        }
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #6f4e37;
-            font-size: 26px;
-            margin-bottom: 6px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #888;
+        /* Moving words animation marquee at the top */
+        .announcement-marquee {
+            background-color: #6f4e37;
+            color: #f4e7d3;
+            padding: 8px 0;
             font-size: 14px;
-            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            overflow: hidden;
+            white-space: nowrap;
         }
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-bottom: 1.5rem;
+
+        .marquee-text {
+            display: inline-block;
+            animation: scroll-text 20s linear infinite;
         }
+
+        @keyframes scroll-text {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Menu card modifications to fit the ordering layout buttons */
         .menu-card {
-            background: #faf8f5;
-            border: 1.5px solid #e0d5c8;
-            border-radius: 10px;
-            padding: 1rem;
-            transition: border-color 0.2s;
+            height: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
         .menu-card.selected {
             border: 2px solid #6f4e37;
-            background: #fdf6ef;
+            background-color: #faf6f0;
         }
-        .menu-card-icon {
-            font-size: 26px;
-            margin-bottom: 6px;
-        }
-        .tag {
-            display: inline-block;
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 6px;
-            margin-bottom: 6px;
-        }
-        .tag-hot { background: #FAECE7; color: #993C1D; }
-        .tag-cold { background: #E6F1FB; color: #185FA5; }
-        .tag-popular { background: #EAF3DE; color: #3B6D11; }
-        .menu-card-name {
-            font-size: 15px;
-            font-weight: 600;
-            color: #3b2a1a;
-            margin-bottom: 2px;
-        }
-        .menu-card-desc {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 8px;
-        }
-        .menu-card-price {
-            font-size: 13px;
-            color: #6f4e37;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
+
         .qty-control {
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
         }
+
         .qty-btn {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            border: 1.5px solid #d0c0b0;
+            border: 1.5px solid #6f4e37;
             background: white;
             color: #6f4e37;
             font-size: 18px;
@@ -95,199 +73,279 @@
             align-items: center;
             justify-content: center;
             line-height: 1;
+            transition: background 0.2s, color 0.2s;
         }
-        .qty-btn:hover { background: #f4e7d3; }
-        .qty-num {
-            font-size: 15px;
-            font-weight: 600;
-            min-width: 20px;
-            text-align: center;
-            color: #3b2a1a;
-        }
-        .order-summary {
-            background: #faf8f5;
-            border-radius: 10px;
-            padding: 1rem 1.25rem;
-            margin-bottom: 1rem;
-            border: 1px solid #e0d5c8;
-        }
-        .summary-title {
-            font-size: 12px;
-            font-weight: 600;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 10px;
-        }
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #3b2a1a;
-            padding: 4px 0;
-        }
-        .summary-divider {
-            border: none;
-            border-top: 1px solid #e0d5c8;
-            margin: 8px 0;
-        }
-        .summary-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-            font-weight: 600;
-            color: #3b2a1a;
-            padding: 4px 0;
-        }
-        .empty-msg {
-            font-size: 13px;
-            color: #bbb;
-            text-align: center;
-            padding: 8px 0;
-        }
-        .order-btn {
-            width: 100%;
-            padding: 13px;
+
+        .qty-btn:hover {
             background: #6f4e37;
             color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
+        }
+
+        .qty-num {
+            font-size: 16px;
             font-weight: 600;
-            cursor: pointer;
-            letter-spacing: 0.02em;
+            min-width: 25px;
+            text-align: center;
         }
-        .order-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
+
+        /* Order Summary Box style matching your design */
+        .order-summary-box {
+            background-color: #faf8f5;
+            border: 1.5px solid #e0d5c8;
+            border-radius: 12px;
+            padding: 2rem;
         }
-        .order-btn:not(:disabled):hover { background: #5a3d2b; }
-        .toast {
+
+        .order-btn {
+            background-color: #6f4e37;
+            color: white;
+            border: none;
+            transition: background-color 0.2s;
+        }
+
+        .order-btn:hover:not(:disabled) {
+            background-color: #5a3d2b;
+            color: white;
+        }
+
+        /* Toast Container */
+        .toast-container {
             position: fixed;
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
-            background: #6f4e37;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            white-space: nowrap;
+            z-index: 1050;
         }
-        .toast.show { opacity: 1; }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>☕ Daily Brew Coffee Shop</h1>
-    <p class="subtitle">Freshly brewed, made to order</p>
 
-    <div class="menu-grid" id="menuGrid"></div>
-
-    <div class="order-summary">
-        <div class="summary-title">Your Order</div>
-        <div id="summaryItems"><p class="empty-msg">No items selected yet</p></div>
-        <hr class="summary-divider" id="summaryDivider" style="display:none">
-        <div class="summary-total" id="summaryTotal" style="display:none">
-            <span>Total</span>
-            <span id="totalAmount">Ksh 0</span>
+    <!-- Moving Words Animation Banner -->
+    <div class="announcement-marquee">
+        <div class="marquee-text">
+             Welcome to The Daily Brew • Freshly brewed, made to order • Special Offer: 10% off your first checkout! • Fresh Pastries Daily 
         </div>
     </div>
 
-    <button class="order-btn" id="orderBtn" disabled onclick="placeOrder()">Place Order</button>
-</div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">The Daily Brew</a>
 
-<div class="toast" id="toast"></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<script>
-    const menu = [
-        { id: 'espresso',   name: 'Espresso',   price: 200, desc: 'Rich, bold single shot',           tag: 'hot',     tagLabel: 'Hot' },
-        { id: 'cappuccino', name: 'Cappuccino', price: 300, desc: 'Espresso with steamed milk foam',  tag: 'popular', tagLabel: 'Popular' },
-        { id: 'latte',      name: 'Latte',      price: 350, desc: 'Smooth espresso with silky milk',  tag: 'popular', tagLabel: 'Popular' },
-        { id: 'americano',  name: 'Americano',  price: 250, desc: 'Espresso diluted with hot water',  tag: 'hot',     tagLabel: 'Hot' },
-        { id: 'mocha',      name: 'Mocha',      price: 380, desc: 'Espresso with chocolate & milk',   tag: 'popular', tagLabel: 'Popular' },
-        { id: 'cold_brew',  name: 'Cold Brew',  price: 400, desc: 'Slow-steeped, served chilled',     tag: 'cold',    tagLabel: 'Cold' },
-    ];
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav ms-auto">
+                   <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                   </li>
 
-    const quantities = {};
-    menu.forEach(item => quantities[item.id] = 0);
+                <li class="nav-item">
+                   <a class="nav-link" href="menu.html">Menu</a>
+                </li>
 
-    const icons = { hot: '☕', cold: '🧊', popular: '⭐' };
+                    <li class="nav-item">
+                        <a class="nav-link active" href="order.html">Order</a>
+                    </li>
 
-    function renderMenu() {
-        const grid = document.getElementById('menuGrid');
-        grid.innerHTML = menu.map(item => `
-            <div class="menu-card ${quantities[item.id] > 0 ? 'selected' : ''}" id="card-${item.id}">
-                <div class="menu-card-icon">${icons[item.tag]}</div>
-                <span class="tag tag-${item.tag}">${item.tagLabel}</span>
-                <div class="menu-card-name">${item.name}</div>
-                <div class="menu-card-desc">${item.desc}</div>
-                <div class="menu-card-price">Ksh ${item.price.toLocaleString()}</div>
-                <div class="qty-control">
-                    <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
-                    <span class="qty-num" id="qty-${item.id}">${quantities[item.id]}</span>
-                    <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
-                </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link register-link" href="register.html">Register</a>
+                    </li>
+                </ul>
             </div>
-        `).join('');
-    }
+        </div>
+    </nav>
 
-    function changeQty(id, delta) {
-        quantities[id] = Math.max(0, quantities[id] + delta);
-        document.getElementById('qty-' + id).textContent = quantities[id];
-        document.getElementById('card-' + id).classList.toggle('selected', quantities[id] > 0);
-        updateSummary();
-    }
+    <!-- Menu Header Layout -->
+    <section class="menu-header text-center">
+    <div class="menu-header-overlay">
+        <div class="container">
+            <h1 style="font-family: Georgia, 'Times New Roman', Times, serif;">Place Your Order</h1>
+            <p style="font-family: Georgia, 'Times New Roman', Times, serif;">Select quantities below from our freshly prepared menu items to assemble your basket.</p>
+        </div>
+    </div>
+    </section>
 
-    function updateSummary() {
-        const ordered = menu.filter(item => quantities[item.id] > 0);
-        const total = ordered.reduce((sum, item) => sum + item.price * quantities[item.id], 0);
-        const summaryItems = document.getElementById('summaryItems');
-        const summaryDivider = document.getElementById('summaryDivider');
-        const summaryTotal = document.getElementById('summaryTotal');
-        const orderBtn = document.getElementById('orderBtn');
+    <!-- Order Items & Summary Layout -->
+    <section class="menu-section py-5">
+        <div class="container">
+            <div class="row">
+                
+                <!-- Left Side: Interactive Items Grid directly keeping your layout structure -->
+                <div class="col-lg-8">
+                    <h2 class="mb-4">Hot & Cold Drinks</h2>
+                    <div class="row g-4" id="drinksGrid">
+                        <!-- Rendered by JavaScript dynamically -->
+                    </div>
 
-        if (ordered.length === 0) {
-            summaryItems.innerHTML = '<p class="empty-msg">No items selected yet</p>';
-            summaryDivider.style.display = 'none';
-            summaryTotal.style.display = 'none';
-            orderBtn.disabled = true;
-        } else {
-            summaryItems.innerHTML = ordered.map(item => `
-                <div class="summary-row">
-                    <span>${item.name} × ${quantities[item.id]}</span>
-                    <span>Ksh ${(item.price * quantities[item.id]).toLocaleString()}</span>
+                    <h2 class="mt-5 mb-4">Pastries & Snacks</h2>
+                    <div class="row g-4" id="pastriesGrid">
+                        <!-- Rendered by JavaScript dynamically -->
+                    </div>
                 </div>
-            `).join('');
-            summaryDivider.style.display = 'block';
-            summaryTotal.style.display = 'flex';
-            document.getElementById('totalAmount').textContent = 'Ksh ' + total.toLocaleString();
-            orderBtn.disabled = false;
+
+                <!-- Right Side: Sticky Checkout Basket Panel -->
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <div class="position-sticky" style="top: 24px;">
+                        <h2 class="mb-4 text-center">Your Basket</h2>
+                        <div class="order-summary-box shadow-sm">
+                            <div id="summaryItems">
+                                <p class="text-muted text-center my-4">No items selected yet</p>
+                            </div>
+                            <div id="summaryTotalContainer" style="display: none;">
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <strong class="fs-5">Total</strong>
+                                    <span class="fs-4 fw-bold text-success" id="totalAmount">KSh 0</span>
+                                </div>
+                            </div>
+                            <button class="btn order-btn w-100 py-3 fw-bold rounded-3" id="orderBtn" disabled onclick="placeOrder()">
+                                Place Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div> 
+    </section>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container">
+        <div id="orderToast" class="toast align-items-center text-white bg-dark border-0 p-2" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center py-3">
+        <p>&copy; 2026 The Daily Brew Shop. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu & Interactivity Handler Script -->
+    <script>
+        // Exact Menu Database matching your item details, prices, and image strings
+        const drinksMenu = [
+            { id: 'cappuccino', name: 'Cappuccino', price: 250, desc: 'Rich espresso with steamed milk and foam.', img: 'images/cappuccino.jpg' },
+            { id: 'latte', name: 'Latte', price: 280, desc: 'Smooth espresso mixed with creamy milk.', img: 'images/iced-latte.jpg' },
+            { id: 'americano', name: 'Americano', price: 200, desc: 'Simple black coffee with a bold taste.', img: 'images/americano.jpg' },
+            { id: 'milkshake', name: 'Milkshake', price: 300, desc: 'Sweet and creamy milkshake served chilled.', img: 'images/milkshake.jpg' },
+            { id: 'mojito', name: 'Mojito', price: 280, desc: 'Refreshing mint and lime drink served cold.', img: 'images/mojito.jpg' },
+            { id: 'hot-chocolate', name: 'Hot Chocolate', price: 250, desc: 'Warm chocolate drink with a smooth creamy taste.', img: 'images/hot-chocolate.jpg' }
+        ];
+
+        const pastriesMenu = [
+            { id: 'chocolate-muffin', name: 'Chocolate Muffin', price: 180, desc: 'Soft muffin with rich chocolate flavor.', img: 'images/chocolate-muffin.jpg' },
+            { id: 'croissant', name: 'Croissant', price: 220, desc: 'Buttery, flaky pastry served fresh.', img: 'images/croissant.jpg' },
+            { id: 'chicken-sandwich', name: 'Chicken Sandwich', price: 350, desc: 'Fresh sandwich with chicken and vegetables.', img: 'images/chicken-sandwich.jpg' },
+            { id: 'cinnamon-roll', name: 'Cinnamon Roll', price: 250, desc: 'Sweet rolled pastry with cinnamon and icing.', img: 'images/cinnamon-roll.jpg' },
+            { id: 'garlic-bread', name: 'Garlic Bread', price: 180, desc: 'Toasted bread with garlic butter and herbs.', img: 'images/garlic-bread.jpg' },
+            { id: 'chicken-pie', name: 'Chicken Pie', price: 300, desc: 'Flaky pastry filled with warm seasoned chicken.', img: 'images/chicken-pie.jpg' }
+        ];
+
+        // Combine for unified calculations
+        const allItems = [...drinksMenu, ...pastriesMenu];
+        const quantities = {};
+        allItems.forEach(item => quantities[item.id] = 0);
+
+        // Render card grids preserving HTML structures template
+        function generateCardHtml(item) {
+            return `
+                <div class="col-md-6 col-xl-4">
+                    <div class="card menu-card" id="card-${item.id}">
+                        <img src="${item.img}" class="card-img-top" alt="${item.name}">
+                        <div class="card-body text-center d-flex flex-column justify-content-between">
+                            <div>
+                                <h5>${item.name}</h5>
+                                <p class="small text-muted mb-2">${item.desc}</p>
+                                <span class="d-block mb-2 fw-bold text-dark">KSh ${item.price}</span>
+                            </div>
+                            <div class="qty-control">
+                                <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+                                <span class="qty-num" id="qty-${item.id}">0</span>
+                                <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
-    }
 
-    function placeOrder() {
-        const ordered = menu.filter(item => quantities[item.id] > 0);
-        const total = ordered.reduce((sum, item) => sum + item.price * quantities[item.id], 0);
-        const summary = ordered.map(item => `${quantities[item.id]}x ${item.name}`).join(', ');
-        showToast('Order placed! ' + summary + ' — Ksh ' + total.toLocaleString());
-        menu.forEach(item => quantities[item.id] = 0);
-        renderMenu();
+        function buildGrids() {
+            document.getElementById('drinksGrid').innerHTML = drinksMenu.map(generateCardHtml).join('');
+            document.getElementById('pastriesGrid').innerHTML = pastriesMenu.map(generateCardHtml).join('');
+        }
+
+        function changeQty(id, delta) {
+            quantities[id] = Math.max(0, quantities[id] + delta);
+            document.getElementById('qty-' + id).textContent = quantities[id];
+            
+            const card = document.getElementById('card-' + id);
+            if (quantities[id] > 0) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const ordered = allItems.filter(item => quantities[item.id] > 0);
+            const total = ordered.reduce((sum, item) => sum + item.price * quantities[item.id], 0);
+            
+            const summaryItems = document.getElementById('summaryItems');
+            const totalContainer = document.getElementById('summaryTotalContainer');
+            const orderBtn = document.getElementById('orderBtn');
+
+            if (ordered.length === 0) {
+                summaryItems.innerHTML = '<p class="text-muted text-center my-4">No items selected yet</p>';
+                totalContainer.style.display = 'none';
+                orderBtn.disabled = true;
+            } else {
+                summaryItems.innerHTML = ordered.map(item => `
+                    <div class="d-flex justify-content-between align-items-center mb-2" style="font-size: 14px;">
+                        <span>${item.name} <strong class="text-secondary">× ${quantities[item.id]}</strong></span>
+                        <span class="fw-semibold">KSh ${(item.price * quantities[item.id]).toLocaleString()}</span>
+                    </div>
+                `).join('');
+                totalContainer.style.display = 'block';
+                document.getElementById('totalAmount').textContent = 'KSh ' + total.toLocaleString();
+                orderBtn.disabled = false;
+            }
+        }
+
+        function placeOrder() {
+            const ordered = allItems.filter(item => quantities[item.id] > 0);
+            const total = ordered.reduce((sum, item) => sum + item.price * quantities[item.id], 0);
+            const summaryText = ordered.map(item => `${quantities[item.id]}x ${item.name}`).join(', ');
+            
+            // Show Bootstrap Notification Toast
+            const toastEl = document.getElementById('orderToast');
+            document.getElementById('toastMessage').textContent = `Order placed successfully! ${summaryText} — Total: KSh ${total.toLocaleString()}`;
+            const bToast = new bootstrap.Toast(toastEl, { delay: 4000 });
+            bToast.show();
+
+            // Reset state
+            allItems.forEach(item => quantities[item.id] = 0);
+            buildGrids();
+            updateSummary();
+        }
+
+        // Initialize layouts
+        buildGrids();
         updateSummary();
-    }
-
-    function showToast(msg) {
-        const toast = document.getElementById('toast');
-        toast.textContent = msg;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3000);
-    }
-
-    renderMenu();
-    updateSummary();
-</script>
+    </script>
 </body>
 </html>
