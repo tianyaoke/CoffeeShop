@@ -24,8 +24,8 @@ app.use(express.json());
 const pool = new Pool({
     user: process.env.DB_USER || 'postgres',
     host: process.env.DB_HOST || 'localhost',
-    database: process.env.DB_NAME || 'auth_db',
-    password: process.env.DB_PASSWORD || 'Vincent kabiru',
+    database: process.env.DB_NAME || 'coffeeshop',
+    password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT || 5432,
 });
 
@@ -35,7 +35,7 @@ pool.connect((err, client, release) => {
         console.error('❌ Error connecting to PostgreSQL:', err.stack);
         console.log('📌 Make sure PostgreSQL is running and credentials are correct');
         console.log(`   DB_USER: ${process.env.DB_USER || 'postgres'}`);
-        console.log(`   DB_NAME: ${process.env.DB_NAME || 'auth_db'}`);
+        console.log(`   DB_NAME: ${process.env.DB_NAME || 'coffeeshop'}`);
         console.log(`   DB_HOST: ${process.env.DB_HOST || 'localhost'}`);
     } else {
         console.log('✅ Connected to PostgreSQL database');
