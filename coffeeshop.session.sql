@@ -16,11 +16,7 @@ CREATE TABLE IF NOT EXISTS coffee_items(
 );
 CREATE TABLE IF NOT EXISTS orders(
     order_id SERIAL PRIMARY KEY,
-<<<<<<< HEAD
     user_id INT REFERENCES users(id) ON DELETE SET NULL,
-=======
-    id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
->>>>>>> ca76e916b20a73d30984fb41ed1a2075eeb6df6e
     status VARCHAR(20) NOT NULL DEFAULT 'pending' CHECK (status IN('pending', 'confirmed', 'ready', 'completed', 'cancelled')),
     total_amount NUMERIC(10,2) NOT NULL CHECK (total_amount >=0),
     notes TEXT,
@@ -38,4 +34,14 @@ INSERT INTO coffee_items (name, description, price, category, image_url, is_avai
 VALUES
   ('Cappuccino', 'Rich espresso topped with smooth steamed milk foam.', 250.00, 'coffee', 'images/cappuccino.jpg', TRUE),
   ('Iced Latte', 'Cool, creamy, and refreshing coffee served over ice.', 280.00, 'coffee', 'images/iced-latte.jpg', TRUE),
-  ('Butter Croissant', 'Freshly baked, soft inside, and golden outside.', 220.00, 'pastry', 'images/croissant.jpg', TRUE);
+  ('Americano', 'Simple black coffee with a bold taste.', 200.00, 'coffee', 'images/americano.jpg', TRUE),
+  ('Milkshake', 'Sweet and creamy milkshake served chilled.', 300.00, 'beverages', 'images/milkshake.jpg', TRUE),
+  ('Mojito', 'Refreshing mint and lime drink served cold.', 280.00, 'beverages', 'images/mojito.jpg', TRUE),
+  ('Hot Chocolate', 'Warm chocolate drink with a smooth creamy taste.', 250.00, 'beverages', 'images/hot-chocolate.jpg', TRUE),
+  ('Croissant', 'Freshly baked, soft inside, and golden outside.', 220.00, 'pastry', 'images/croissant.jpg', TRUE),
+  ('Chocolate Muffin', 'Soft muffin with rich chocolate flavor.', 180.00, 'pastry', 'images/chocolate-muffin.jpg', TRUE),
+  ('Chicken Sandwich', 'Fresh sandwich with chicken and vegetables.', 350.00, 'snacks', 'images/chicken-sandwich.jpg', TRUE),
+  ('Cinnamon Roll', 'Sweet rolled pastry with cinnamon and icing.', 250.00, 'pastry', 'images/cinnamon-roll.jpg', TRUE),
+  ('Garlic Bread', 'Toasted bread with garlic butter and herbs.', 180.00, 'snacks', 'images/garlic-bread.jpg', TRUE),
+  ('Chicken Pie', 'Flaky pastry filled with warm seasoned chicken.', 300.00, 'snacks', 'images/chicken-pie.jpg', TRUE);
+
