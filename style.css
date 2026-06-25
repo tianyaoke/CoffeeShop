@@ -293,9 +293,6 @@ h1, h2, h3, h4, h5 {
    MENU PAGE HEADER
    ========================= */
 
-/* =========================
-   MENU PAGE HEADER
-   ========================= */
 
 .menu-header {
     background-image: url("images/menu-bg.jpg");
@@ -422,5 +419,160 @@ h1, h2, h3, h4, h5 {
 
     .product-card img {
         height: 210px;
-    }
+    } }
+
+    /* =========================
+   ABOUT PAGE
+   ========================= */
+
+.about-header {
+background-image: url("images/aboutbg.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+margin-top: 70px;
+}
+
+.about-header-overlay {
+background-color: rgba(0,0,0,0.55);
+padding: 180px 20px;
+}
+
+.about-header h1 {
+color: white;
+font-size: 60px;
+margin-bottom: 20px;
+}
+
+.about-header p {
+color: white;
+font-size: 22px;
+max-width: 700px;
+margin: auto;
+}
+
+.team-card {
+background: white;
+border-radius: 18px;
+overflow: hidden;
+box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+margin-bottom: 30px;
+transition: 0.3s;
+}
+
+.team-card:hover {
+transform: translateY(-8px);
+}
+
+.team-card img {
+width: 100%;
+height: 280px;
+object-fit: cover;
+/*object-position: top center;*/
+/* object-position: center top;*/
+object-position: center 20%;
+transition: 0.3s ease;
+}
+
+.team-card-body {
+padding: 20px;
+}
+
+.team-card-body h5 {
+    color: var(--dark-brown);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.team-card-body p {
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+.team-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+/*.team-card img[src*="team2"] {
+    object-position:center top; 
+}*/
+
+.team-card img[src*="team6"] {
+    object-position: center top;
+}
+
+.team-card img[src*="team3"] {
+    object-position: center top;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+}
+
+
+.location-card {
+background: white;
+border-radius: 18px;
+overflow: hidden;
+box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.location-card img {
+width: 100%;
+height: 320px;
+object-fit: cover;
+}
+
+.review-card {
+background: white;
+padding: 25px;
+border-radius: 18px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+height: 100%;
+}
+
+.review-stars {
+font-size: 22px;
+margin-bottom: 10px;
+.team-card-body {
+    padding: 20px;
+    min-height: 140px;
+}
+}
+
+
+/* =========================
+   ABOUT STORY SECTION
+   ========================= */
+
+.story-section {
+    background-image: url("images/farm.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.story-overlay {
+    background-color: rgba(0,0,0,0.6);
+    padding: 120px 20px;
+}
+
+.story-section h2 {
+    color: white;
+    margin-bottom: 30px;
+    font-size: 48px;
+}
+
+.story-section p {
+    color: white;
+    max-width: 850px;
+    margin: 20px auto;
+    font-size: 20px;
+    line-height: 1.8;
 }
