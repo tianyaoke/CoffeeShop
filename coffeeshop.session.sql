@@ -45,3 +45,28 @@ VALUES
   ('Garlic Bread', 'Toasted bread with garlic butter and herbs.', 180.00, 'snacks', 'images/garlic-bread.jpg', TRUE),
   ('Chicken Pie', 'Flaky pastry filled with warm seasoned chicken.', 300.00, 'snacks', 'images/chicken-pie.jpg', TRUE);
 
+ALTER TABLE users ADD COLUMN role VARCHAR(20) DEFAULT 'customer';
+UPDATE users SET role = 'admin' WHERE email = 'admin@dailybrew.com';
+
+-- Standardize categories to match frontend filters
+UPDATE coffee_items SET category = 'coffee' WHERE LOWER(category) IN ('coffee', 'hot coffee', 'cold coffee');
+UPDATE coffee_items SET category = 'beverages' WHERE LOWER(category) IN ('beverages', 'drinks', 'cold drinks');
+UPDATE coffee_items SET category = 'pastry' WHERE LOWER(category) IN ('pastry', 'pastries', 'bakery');
+UPDATE coffee_items SET category = 'snacks' WHERE LOWER(category) IN ('snacks', 'snack', 'food');
+
+-- Prepend path syntax matching your database image format layout if missing
+UPDATE coffee_items 
+SET image_url = 'images/' || image_url 
+WHERE image_url NOT LIKE 'images/%';
+
+-- Remove any default constraint that might be forcing 'customer'
+ALTER TABLE users ALTER COLUMN role DROP DEFAULT;
+
+-- Now, officially update your specific admin account
+UPDATE users SET role = 'admin' WHERE email = 'admin@dailybrew.com';
+
+-- Double check that it actually took
+SELECT email, role FROM users WHERE email = 'admin@dailybrew.com';
+
+UPDATE users SET role = 'customer' WHERE role IS NULL;
+ALTER TABLE users ALTER COLUMN role SET DEFAULT 'customer';

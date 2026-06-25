@@ -28,12 +28,10 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "coffeeshop",
-            "database": "coffeeshop",
             "username": "postgres",
-            "password": "208802",
-            "connectionTimeout": 300
+            "database": "coffeeshop",
+            "name": "coffeeshop",
+            "password": "208802"
         }
-    ],
-    "liveServer.settings.port": 5501
+    ]
 }
