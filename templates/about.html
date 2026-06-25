@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - The Daily Brew</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">The Daily Brew</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('menu_page') }}">Menu</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ url_for('about_page') }}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('order_page') }}">Order</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                <li class="nav-item"><a class="nav-link register-link" href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="about-header text-center">
+    <div class="about-header-overlay">
+        <div class="container">
+            <h1>About The Daily Brew</h1>
+            <p>Bringing people together through exceptional coffee, welcoming spaces, and memorable experiences.</p>
+        </div>
+    </div>
+</section>
+
+<section class="story-section">
+    <div class="story-overlay">
+        <div class="container text-center">
+            <h2>Our Story</h2>
+            <p>The Daily Brew began with a simple idea: create a coffee shop where quality coffee and genuine hospitality come together. What started as a small neighborhood café has grown into a welcoming space for students, professionals, families, and coffee lovers seeking a place to relax, work, and connect.</p>
+        </div>
+    </div>
+</section>
+
+<section class="why-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">What We Stand For</h2>
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <div class="why-box h-100 p-3">
+                    <h4>Quality</h4>
+                    <p>Carefully selected ingredients and attention to detail in every beverage.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="why-box h-100 p-3">
+                    <h4>Community</h4>
+                    <p>Creating welcoming spaces where people can connect and grow.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="why-box h-100 p-3">
+                    <h4>Consistency</h4>
+                    <p>Delivering the same great taste and service across every branch.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Meet Our Team</h2>
+        <div class="row g-4">
+            {% set team = [
+                ("Sydney Olayo", "Operations Manager overseeing quality and daily operations."),
+                ("Immaculate Kiio", "Head Barista passionate about creating signature coffee experiences."),
+                ("Tia Imani", "Customer Experience Lead focused on hospitality excellence."),
+                ("Nick Waiyaki", "Procurement Officer ensuring top-quality ingredients."),
+                ("Amy Linet", "Marketing Coordinator building connections with our community."),
+                ("Vincent Kabiru", "Branch Supervisor supporting staff and customer satisfaction."),
+                ("Hersi Aisha", "Technology and Systems Coordinator responsible for maintaining the website.")
+            ] %}
+            
+            {% for i in range(1, 8) %}
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{{ url_for('static', filename='images/team' ~ i ~ '.jpg') }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ team[i-1][0] }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ team[i-1][0] }}</h5>
+                        <p class="card-text small text-muted">{{ team[i-1][1] }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Visit Our Branches</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{{ url_for('static', filename='images/location1.jpg') }}" class="card-img-top" style="height: 300px; object-fit: cover;" alt="Nairobi CBD Branch">
+                    <div class="card-body p-4 text-center">
+                        <h4>Nairobi CBD Branch</h4>
+                        <p class="text-muted">Conveniently located in the city centre, perfect for professionals, students, and busy commuters.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{{ url_for('static', filename='images/location2.jpg') }}" class="card-img-top" style="height: 300px; object-fit: cover;" alt="Westlands Branch">
+                    <div class="card-body p-4 text-center">
+                        <h4>Westlands Branch</h4>
+                        <p class="text-muted">A spacious and relaxed environment ideal for meetings, study sessions, and weekend catchups.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Customer Reviews</h2>
+        <div class="row g-4">
+            
+            {% set reviews = [
+                ("James K.", "Best cappuccino I've had in Nairobi. Friendly staff and great atmosphere."),
+                ("Sarah M.", "Perfect study environment with excellent coffee and reliable service."),
+                ("Kevin O.", "A favourite meeting spot for our team. Consistently excellent.")
+            ] %}
+
+            {% for name, comment in reviews %}
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body p-4 text-center">
+                        <div class="review-stars text-warning mb-3">★★★★★</div>
+                        <p class="card-text fst-italic">"{{ comment }}"</p>
+                        <hr>
+                        <strong class="text-primary">- {{ name }}</strong>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>
+
+<section class="cta-section text-center py-5">
+    <div class="container">
+        <h2>Ready For Your Next Coffee?</h2>
+        <a href="{{ url_for('menu_page') }}" class="btn btn-custom">View Menu</a>
+    </div>
+</section>
+
+<footer class="footer text-center py-4">
+    <p>&copy; 2026 The Daily Brew Coffee Shop. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

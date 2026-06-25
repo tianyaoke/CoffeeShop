@@ -26,6 +26,10 @@ def index():
 def menu_page():
     return render_template('menu.html')
 
+@app.route('/about')
+def about_page():
+    return render_template('about.html')
+
 @app.route('/order')
 def order_page():
     conn = get_db_connection()
